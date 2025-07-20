@@ -4,7 +4,7 @@ FROM dunglas/frankenphp
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# ADD THIS BLOCK to install required PHP extensions for Laravel
+# Install required PHP extensions for Laravel
 RUN install-php-extensions \
     bcmath \
     pdo_mysql \
@@ -17,9 +17,6 @@ COPY . /app
 
 # Install PHP dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
-
-# Set the correct permissions for storage and cache
-RUN chown -R frankenphp:frankenphp /app/storage /app/bootstrap/cache
 
 # Expose the server port
 EXPOSE 80
