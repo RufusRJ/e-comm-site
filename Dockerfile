@@ -1,8 +1,16 @@
 # Use a standard PHP image with a web server (Caddy)
 FROM dunglas/frankenphp
 
-# ADD THIS LINE to install Composer
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# ADD THIS BLOCK to install required PHP extensions for Laravel
+RUN install-php-extensions \
+    bcmath \
+    pdo_mysql \
+    zip \
+    gd \
+    exif
 
 # Copy our Laravel application code into the server
 COPY . /app
