@@ -1,8 +1,0 @@
-# render.yaml - place this in the root of your project
-services:
-  - type: web
-    name: e-comm-site # This now matches your service name
-    env: php # This forces the PHP environment, overriding the "Node" setting
-    plan: free
-    buildCommand: "composer install --no-dev && npm install && npm run build && php artisan config:cache"
-    startCommand: "php artisan serve --host 0.0.0.0 --port $PORT"
