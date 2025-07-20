@@ -13,11 +13,18 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set the working directory
 WORKDIR /app
 
-# Copy the rest of the application files
+# Copy the application files
 COPY . .
 
 # Install project dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
+# Copy and make the entrypoint script executable
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
 # Expose the port Laravel will run on
 EXPOSE 8000
+
+# Set the entrypoint script as the start command
+CMD ["./entrypoint.sh"]
