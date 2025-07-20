@@ -1,0 +1,64 @@
+/* --- General Body & Background --- */
+body {
+    background-color: #2c2c2c; /* Dark charcoal background */
+    color: #f0e9e0; /* Off-white, warm text color */
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Subtle wood texture */
+}
+
+/* --- Typography --- */
+h1, h5 {
+    color: #ffffff; /* Brighter white for main headings */
+    font-weight: bold;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: #1a1a1a !important; /* Very dark, almost black navbar */
+    border-bottom: 2px solid #5a4a3a; /* Woodish brown border */
+}
+
+.navbar-brand {
+    color: #f0e9e0 !important; /* Use the off-white text color */
+}
+
+/* --- Buttons --- */
+.btn-primary, .btn-success {
+    background-color: #8c6a4d; /* Muted, woody brown for buttons */
+    border-color: #7a5a3d;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-success:hover {
+    background-color: #7a5a3d; /* Darker shade on hover */
+    border-color: #6a4a2d;
+}
+
+/* --- Product Card Styling --- */
+.card {
+    background-color: #3e3e3e; /* Dark card background, slightly lighter than body */
+    border: 1px solid #5a4a3a; /* Woodish border */
+    color: #f0e9e0;
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lifts the card slightly on hover */
+}
+
+.card-title {
+    color: #ffffff;
+}
+
+.card-text {
+    color: #f0e9e0;
+    font-size: 1.2rem;
+}
+
+/* --- Links --- */
+a {
+    color: #a98a6d;
+}
+
+a:hover {
+    color: #c9a88d;
+}
