@@ -1,28 +1,23 @@
-# Use a standard PHP image with a web server (Caddy)
-FROM dunglas/frankenphp
+# Use the official PHP 8.2 image
+FROM php:8.2-cli-alpine
+
+# Install system dependencies for extensions
+RUN apk add --no-cache libzip-dev zip build-base linux-headers
+
+# Install required PHP extensions
+RUN docker-php-ext-install pdo_mysql zip bcmath
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install required PHP extensions for Laravel
-RUN install-php-extensions \
-    bcmath \
-    pdo_mysql \
-    zip \
-    gd \
-    exif
+# Set the working directory
+WORKDIR /app
 
-# ADD THIS LINE to fix execute permissions
-RUN chmod +x /usr/local/bin/frankenphp
+# Copy the rest of the application files
+COPY . .
 
-# Copy our Laravel application code into the server
-COPY . /app
-
-# Install PHP dependencies
+# Install project dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
-# Expose the server port
-EXPOSE 80
-
-# This command runs when the server starts
-CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
+# Expose the port Laravel will run on
+EXPOSE 8000
