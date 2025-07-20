@@ -12,6 +12,9 @@ RUN install-php-extensions \
     gd \
     exif
 
+# ADD THIS LINE to fix execute permissions
+RUN chmod +x /usr/local/bin/frankenphp
+
 # Copy our Laravel application code into the server
 COPY . /app
 
