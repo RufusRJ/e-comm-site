@@ -1,8 +1,8 @@
 # Use the official PHP 8.2 image
 FROM php:8.2-cli-alpine
 
-# Install system dependencies for extensions
-RUN apk add --no-cache libzip-dev zip build-base linux-headers
+# Install system dependencies for extensions, including fcgi
+RUN apk add --no-cache libzip-dev zip build-base linux-headers fcgi
 
 # Install required PHP extensions
 RUN docker-php-ext-install pdo_mysql zip bcmath
@@ -13,7 +13,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set the working directory
 WORKDIR /app
 
-# Copy the application files
+# Copy the rest of the application files
 COPY . .
 
 # Install project dependencies
