@@ -5,6 +5,10 @@ set -e
 
 echo "==> Entrypoint script started..."
 
+# Run a PING TEST to see if the database host is reachable
+echo "==> Pinging database host..."
+ping -c 4 dpg-d1u1nhh5pdvs73imomt0-a
+
 # Wait for the database to be ready
 echo "==> Waiting for database to be ready (15 seconds)..."
 sleep 15
